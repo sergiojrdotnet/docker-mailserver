@@ -38,6 +38,7 @@ function _pre_installation_steps() {
 function _install_ssh() {
   _log 'debug' 'Installing SSH'
   apt-get "${QUIET}" install --no-install-recommends openssh-server
+  mkdir /run/sshd
 }
 
 function _install_utils() {
