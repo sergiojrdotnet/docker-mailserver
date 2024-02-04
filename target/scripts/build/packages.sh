@@ -35,6 +35,11 @@ function _pre_installation_steps() {
   apt-get "${QUIET}" install --no-install-recommends "${EARLY_PACKAGES[@]}" 2>/dev/null
 }
 
+function _install_ssh() {
+  _log 'debug' 'Installing SSH'
+  apt-get "${QUIET}" install --no-install-recommends openssh-server
+}
+
 function _install_utils() {
   _log 'debug' 'Installing utils sourced from Github'
   _log 'trace' 'Installing jaq'
@@ -198,6 +203,7 @@ function _post_installation_steps() {
 }
 
 _pre_installation_steps
+_install_ssh
 _install_utils
 _install_postfix
 _install_packages

@@ -313,7 +313,7 @@ ARG DMS_RELEASE=edge
 ARG VCS_REVISION=unknown
 
 WORKDIR /
-EXPOSE 25 587 143 465 993 110 995 4190
+EXPOSE 22 25 587 143 465 993 110 995 4190
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
