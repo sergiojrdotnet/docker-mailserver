@@ -6,7 +6,7 @@
 ARG DEBIAN_FRONTEND=noninteractive
 ARG DOVECOT_COMMUNITY_REPO=0
 ARG LOG_LEVEL=trace
-ARG SSH_USER
+ARG SSH_USERNAME
 ARG SSH_PASSWORD
 
 FROM docker.io/debian:12-slim AS stage-base
@@ -14,7 +14,7 @@ FROM docker.io/debian:12-slim AS stage-base
 ARG DEBIAN_FRONTEND
 ARG DOVECOT_COMMUNITY_REPO
 ARG LOG_LEVEL
-ARG SSH_USER
+ARG SSH_USERNAME
 ARG SSH_PASSWORD
 
 SHELL ["/bin/bash", "-e", "-o", "pipefail", "-c"]
@@ -32,7 +32,7 @@ EOF
 COPY target/scripts/build/packages.sh /build/
 COPY target/scripts/helpers/log.sh /usr/local/bin/helpers/log.sh
 
-RUN useradd --system -d / -s /bin/bash -p $ssh_password $ssh_user
+RUN useradd --system -d / -s /bin/bash -p $SSH_PASSWORD $SSH_USERNAME
 
 RUN /bin/bash /build/packages.sh && rm -r /build
 
